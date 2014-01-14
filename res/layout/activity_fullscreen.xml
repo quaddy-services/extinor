@@ -1,0 +1,107 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@color/black_overlay"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="horizontal"
+    tools:context=".FullscreenActivity" >
+
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/dummy_content"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black" >
+
+        <ImageView
+            android:id="@+id/auto"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/eimer" />
+
+        <ImageButton
+            android:id="@+id/feuer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/feuer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/feuer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/feuer4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/feuer5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/feuer6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/feuer7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/feuer8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:src="@android:drawable/btn_star" />
+    </FrameLayout>
+
+</FrameLayout>
