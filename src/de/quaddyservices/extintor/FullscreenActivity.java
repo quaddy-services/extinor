@@ -6,18 +6,13 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -30,10 +25,6 @@ import android.widget.Toast;
 public class FullscreenActivity extends Activity {
 
 	private Runnable runnable;
-
-	private BroadcastReceiver powerConnectionReceiver;
-
-	private boolean keepOn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,17 +67,6 @@ public class FullscreenActivity extends Activity {
 						if (brennt.contains(tempFeuer)) {
 							tempFeuer.setBackgroundColor(schwarz);
 
-							final Handler handler = new Handler();
-							handler.postDelayed(new Runnable() {
-								@Override
-								public void run() {
-									feuerAnzuenden();
-									Toast.makeText(getActivity(),
-											"Es brennt wieder",
-											Toast.LENGTH_LONG).show();
-
-								}
-							}, 3000);
 						}
 					}
 				}
@@ -105,10 +85,16 @@ public class FullscreenActivity extends Activity {
 	}
 
 	private void feuerAnzuenden() {
-		View tempFeuer = feuer.get((int) Math.round(Math.random() * feuer.size()));
-		tempFeuer.setBackgroundColor(
-				rot);
-		brennt.add(tempFeuer);
+		int tempRandom = (int) Math.round(Math.random() * feuer.size());
+		if (tempRandom < feuer.size()) {
+			View tempFeuer = feuer.get(tempRandom);
+			if (!brennt.contains(tempFeuer)) {
+				tempFeuer.setBackgroundColor(rot);
+				brennt.add(tempFeuer);
+				Toast.makeText(getActivity(), "Es brennt...", Toast.LENGTH_LONG)
+						.show();
+			}
+		}
 	}
 
 	private View gedruecktesAuto = null;
@@ -117,9 +103,7 @@ public class FullscreenActivity extends Activity {
 	private int blau = 0xff0000ff;
 	private int rot = 0xffff0000;
 
-
-
-
+	private int naechstesFeuer = 3000;
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -130,10 +114,6 @@ public class FullscreenActivity extends Activity {
 
 	private void doFinish() {
 		runnable = null;
-		if (powerConnectionReceiver != null) {
-			unregisterReceiver(powerConnectionReceiver);
-			powerConnectionReceiver = null;
-		}
 		Log.i(getClass().getName(), "doFinish:" + this);
 
 	}
@@ -159,6 +139,9 @@ public class FullscreenActivity extends Activity {
 			feuer.add(findViewById(R.id.feuer3));
 			feuer.add(findViewById(R.id.feuer4));
 			feuer.add(findViewById(R.id.feuer5));
+			feuer.add(findViewById(R.id.feuer6));
+			feuer.add(findViewById(R.id.feuer7));
+			feuer.add(findViewById(R.id.feuer8));
 		}
 		Log.i(getClass().getName(), "onCreateNightLight:" + this);
 	}
@@ -203,7 +186,7 @@ public class FullscreenActivity extends Activity {
 		layoutParams.leftMargin = layoutParams.leftMargin + 1;
 
 		final View contentView = findViewById(R.id.fullscreen_content);
-		if (layoutParams.leftMargin > contentView.getWidth()-30) {
+		if (layoutParams.leftMargin > contentView.getWidth() - 30) {
 			layoutParams.leftMargin = 10;
 		}
 
@@ -211,9 +194,14 @@ public class FullscreenActivity extends Activity {
 
 		if (runnable != null) {
 			final Handler handler = new Handler();
-			handler.postDelayed(runnable, 1000);
+			handler.postDelayed(runnable, naechstesFeuer);
 		}
 
+		if (naechstesFeuer > 400) {
+			naechstesFeuer = naechstesFeuer - 200;
+		}
+
+		feuerAnzuenden();
 	}
 
 	private Context getActivity() {
