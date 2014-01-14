@@ -31,9 +31,6 @@ public class FullscreenActivity extends Activity {
 
 	private Runnable runnable;
 
-	private BroadcastReceiver powerConnectionReceiver;
-
-	private boolean keepOn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -130,10 +127,6 @@ public class FullscreenActivity extends Activity {
 
 	private void doFinish() {
 		runnable = null;
-		if (powerConnectionReceiver != null) {
-			unregisterReceiver(powerConnectionReceiver);
-			powerConnectionReceiver = null;
-		}
 		Log.i(getClass().getName(), "doFinish:" + this);
 
 	}
@@ -159,6 +152,9 @@ public class FullscreenActivity extends Activity {
 			feuer.add(findViewById(R.id.feuer3));
 			feuer.add(findViewById(R.id.feuer4));
 			feuer.add(findViewById(R.id.feuer5));
+			feuer.add(findViewById(R.id.feuer6));
+			feuer.add(findViewById(R.id.feuer7));
+			feuer.add(findViewById(R.id.feuer8));
 		}
 		Log.i(getClass().getName(), "onCreateNightLight:" + this);
 	}
